@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Roboto:wght@400;500&display=swap');
+
+* {
+  font-family: Poppins;
+}
+
+.register-main {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.card-main {
+  height: 50vh;
+  border-radius: 10px;
+  -webkit-box-shadow: -1px 0px 5px 3px rgba(189, 189, 189, 1);
+  -moz-box-shadow: -1px 0px 5px 3px rgba(189, 189, 189, 1);
+  box-shadow: -1px 0px 5px 3px rgba(189, 189, 189, 1);
+  
+}
+
+.inputs-container{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -35%);
+}
+
+.input-fields{
+  margin: 5px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid #bdbdbd;
+  outline: none;
+}
+
+.input-fields:focus{
+  border: 2px solid #ffc107;
+}
+
+.input-btn{
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border: 1px solid #bdbdbd;
+  background-color: #009688;
+  color: white;
+  cursor: pointer;
+}
+
+.home-main{
+  text-align: center;
+  padding: 20px;
+}
+
+.add-password {
+  position: absolute;
+  right:1.2rem;
+}
+
+.password-data{
+  position: relative;
+  display: flex;
+  gap:0.1rem;
+  justify-content: space-between;
+  list-style-type:none;
+  top:2rem;
+  flex-direction: column;
+}
+
+.password-main{
+  position: relative;
+  padding:0 30px;
+  text-align: center;
+}
+.list {
+  font-size: 20px;
+  background-color: rgb(95, 197, 197);
+}
+
+.list-header {
+  font-size: 22px !important;
+  background-color: rgb(82, 163, 163) !important;
+}
+.list-con{
+  text-align: center;
+  display: flex;
+  gap:100px;
+  justify-content: space-between;
+}
