@@ -38,11 +38,24 @@ export default function Login() {
 }
 
   let navigate = useNavigate();
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const [alertopen , setAlertopen] = useState(false);
+  const handleClose =()=>{
+   setAlertopen(false) 
+  }
   
   const login = () =>{
+    setAlertopen(true);
     signInWithEmailAndPassword(auth , loginData.email , hashPassword(loginData.password))
+    
     .then((response)=>{
+      
       sessionStorage.setItem('userEmail',response.user.email)
+      
       localStorage.setItem('userHash',hashPassword(loginData.password))
       navigate('/home')
     })
@@ -115,6 +128,11 @@ return (
       </Box>
       
     </Container>
+    <Snackbar open={alertopen} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+           LoggedIn successfully
+          </Alert>
+      </Snackbar>
   </ThemeProvider>
 );
 }

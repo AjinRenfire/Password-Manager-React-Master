@@ -45,9 +45,20 @@ export default function Register(props) {
     }
 
     let navigate = useNavigate();
+    const Alert = React.forwardRef(function Alert(props, ref) {
+      return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
+  
+    const [alertopen , setAlertopen] = useState(false);
+    const handleClose =()=>{
+     setAlertopen(false) 
+    }
+
+   
     const register = () =>{
+        
         const hashedPasswored=hashPassword(registerData.password)
-    
+        setAlertopen(true)
         createUserWithEmailAndPassword(auth,registerData.email,hashedPasswored)
         .then(response => {
            
@@ -57,6 +68,7 @@ export default function Register(props) {
                 passwordsArray:[]
             })
             .then(()=>{
+              
                 navigate("/")
             })
             .catch(()=>{
@@ -65,7 +77,7 @@ export default function Register(props) {
             
         })
         .catch(error =>{
-            console.log(error.message)
+            alert(error.message)
         })
     }
     
@@ -73,6 +85,7 @@ export default function Register(props) {
 
     return (
       <ThemeProvider theme={theme}>
+        
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
@@ -131,7 +144,14 @@ export default function Register(props) {
           </Box>
           
         </Container>
+        <Snackbar open={alertopen} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+           Registered successfully
+          </Alert>
+        </Snackbar>
+        
       </ThemeProvider>
+      
     );
     }
     

@@ -27,6 +27,9 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import Box from '@mui/material/Box';
 import { Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 
 
@@ -153,7 +156,17 @@ export default function Home(props) {
         
     }
 
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+      });
+    
+      const [alertopen , setAlertopen] = useState(false);
+      const handleAlertClose =()=>{
+       setAlertopen(false) 
+      }
+
     const addPasswords = () =>{
+        setAlertopen(true);
         const docTOUpdate = doc(props.database, 'userpasswords' , passwordsArray[0].id)
         updateDoc(docTOUpdate,{
             passwordsArray:[...oldPasswords,passwordObject]
@@ -186,6 +199,7 @@ export default function Home(props) {
 
     
     const deleteEntry = (password,deleteId) =>{
+        
         // const docTOUpdate = doc(props.database, 'userpasswords' , passwordsArray[0].id)
         
         // updateDoc(docTOUpdate ,{
@@ -195,6 +209,7 @@ export default function Home(props) {
         // })
        
     }
+   
    
 
     function EditValuesForm(props){
@@ -259,7 +274,7 @@ export default function Home(props) {
   
    
         <Typography variant='h4'>Password Manager</Typography>
-       <Button  onClick={logOut}>Log out</Button>
+       <Button variant="outlined" color="error" onClick={logOut}>Log out</Button>
  
     </Grid>
           
@@ -271,7 +286,7 @@ export default function Home(props) {
         alignItems="flex-end"
   
     >
-        <Button onClick={handleOpen}>Add</Button>
+        <Button variant="contained" onClick={handleOpen}>Add</Button>
  
     </Box>
       
@@ -353,6 +368,11 @@ export default function Home(props) {
                     closepm={handlePassClose}
                     
                 />
+            <Snackbar open={alertopen} autoHideDuration={3100} onClose={handleAlertClose}>
+                <Alert onClose={handleAlertClose} severity="success" sx={{ width: '100%' }}>
+                    Info added successfully
+                </Alert>
+      </Snackbar>
         </>
     )
 }
