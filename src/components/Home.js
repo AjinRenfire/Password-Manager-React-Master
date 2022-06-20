@@ -30,6 +30,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import { blueGrey } from '@mui/material/colors';
 
 
 
@@ -261,14 +262,12 @@ export default function Home(props) {
         <>
         
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        
-          <TableContainer sx={{ maxHeight: 440 }}>
-          
         <Grid
         container
         direction="row"
         justifyContent="space-around"
         alignItems="center"
+        sx={{boxShadow: 2,p:1}}
         >
 
   
@@ -277,7 +276,6 @@ export default function Home(props) {
        <Button variant="outlined" color="error" onClick={logOut}>Log out</Button>
  
     </Grid>
-          
     <Box
         m={1}
         //margin
@@ -289,6 +287,11 @@ export default function Home(props) {
         <Button variant="contained" onClick={handleOpen}>Add</Button>
  
     </Box>
+          <TableContainer sx={{ maxHeight: 600 }}>
+          
+        
+          
+    
       
 
          
@@ -297,17 +300,17 @@ export default function Home(props) {
               <TableHead className='list-header'>
                 <TableRow >
                     <TableCell
-
+                    sx={{bgcolor:blueGrey[100]}}
                     >
                       URL
                     </TableCell>
                     <TableCell
-                    
+                    sx={{bgcolor:blueGrey[100]}}
                     >
                       Username
                     </TableCell>
                     <TableCell
-                 
+                 sx={{bgcolor:blueGrey[100]}}
                     >
                       Options
                     </TableCell>

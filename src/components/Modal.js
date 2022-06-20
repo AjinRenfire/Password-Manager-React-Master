@@ -25,6 +25,7 @@ export default function AddModal(props) {
           alignItems: 'center',
           bgcolor: 'background.paper',
           border: '2px dashed #324741',
+          borderRadius:'20px',
           boxShadow: 24,
           transform: 'translate(-50%, -50%)',
           p: 4
