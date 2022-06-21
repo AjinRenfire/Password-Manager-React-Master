@@ -307,6 +307,7 @@ export default function Home(props) {
         display="flex"
         justifyContent="flex-end"
         alignItems="flex-end"
+        sx={{p:2,gap:2}}
   
     >
         <Button variant="contained" onClick={handleGenerate}>Generate</Button>

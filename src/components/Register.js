@@ -139,6 +139,7 @@ export default function Register(props) {
                     {"Already have an account? LogIn"}
                   </Link>
                 </Grid>
+                <Typography sx={{color:'#bd822f'}}><bold>Warning</bold> : Please don't forget your master password , choose the master password as it will be known only to you(like something known only to you😉)</Typography>
               </Grid>
             </Box>
           </Box>
