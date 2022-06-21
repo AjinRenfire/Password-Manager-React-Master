@@ -58,6 +58,11 @@ export default function Home(props) {
     //edit
     const [editId,setEditId] = useState(null);
 
+    //genmodal handles
+    const [genOpen, setGenOpen] = useState(false);
+    const handleGenOpen = () => setGenOpen(true);
+    const handleGenClose = () => setGenOpen(false);
+
     let userHash = localStorage.getItem('userHash')
     let auth = getAuth();
     let navigate = useNavigate();
@@ -198,6 +203,26 @@ export default function Home(props) {
         
     },[])
 
+    const [generatedPass,setGeneratedPass] = useState('$@&g#jhP6@H1Z&');
+
+    const arrayOfLowChars=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    const arrayOfUpperChars= ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+    const arrayOfNumeric =['1','2','3','4','5','6','7','8','9','0']
+    const arrayOfSpecial=['@','#','$','&']
+    const all = [arrayOfLowChars,arrayOfUpperChars,arrayOfNumeric,arrayOfSpecial]
+    const handleGenerate = () =>{
+        let genPass = '';
+        
+        for(let i=0;i<14;i++){
+            let ranarray = all[Math.floor(Math.random()*all.length)]
+            genPass += ranarray[Math.floor(Math.random()*ranarray.length)]
+
+        }
+        setGeneratedPass(genPass);
+        setGenOpen(true)
+        
+    }
+
     
     const deleteEntry = (password,deleteId) =>{
         
@@ -284,9 +309,11 @@ export default function Home(props) {
         alignItems="flex-end"
   
     >
+        <Button variant="contained" onClick={handleGenerate}>Generate</Button>
         <Button variant="contained" onClick={handleOpen}>Add</Button>
  
     </Box>
+
           <TableContainer sx={{ maxHeight: 600 }}>
           
         
@@ -358,7 +385,7 @@ export default function Home(props) {
           </TableContainer>
           
         </Paper>
-        <AddModal 
+                <AddModal 
                     open={open} 
                     handleClose={handleClose} 
                     handleModalInputs={handleModalInputs}
@@ -369,6 +396,13 @@ export default function Home(props) {
                     handlePassClose={handlePassClose}
                     password={decryptAES(showPassword)}
                     closepm={handlePassClose}
+                    
+                />
+                <PasswordModal 
+                    passopen={genOpen} 
+                    handlePassClose={handleGenClose}
+                    password={generatedPass}
+                    closepm={handleGenClose}
                     
                 />
             <Snackbar open={alertopen} autoHideDuration={3100} onClose={handleAlertClose}>

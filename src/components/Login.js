@@ -32,7 +32,7 @@ export default function Login() {
     var sha = forge.md.sha256.create();
     sha.update(plainpass);
 
-    console.log(sha.digest().toHex())
+    
 
     return (sha.digest().toHex());
 }
